@@ -11,6 +11,7 @@ export function SiteHeader({ locale, page, t }: SectionProps & { page: Page }) {
   });
   const results = section("results", t.nav.results);
   const about = section("about", t.nav.about);
+  const channel = section("channel", t.nav.channel);
   const support = section("support", t.nav.support);
   const contact = section("contact", t.nav.contact);
   // News and Sponsors are pages of their own; the rest are home page sections.
@@ -29,8 +30,8 @@ export function SiteHeader({ locale, page, t }: SectionProps & { page: Page }) {
     tile: "bg-ink hover:bg-flag-blue",
   };
   const pages = [news, sponsors];
-  const sections = [results, about, support, contact];
-  const links = [results, about, support, news, sponsors, contact];
+  const sections = [results, about, channel, support, contact];
+  const links = [results, about, channel, support, news, sponsors, contact];
   const linkClass =
     "hover:text-corner-red aria-[current=page]:text-corner-red aria-[current=page]:underline aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8";
 
@@ -46,13 +47,14 @@ export function SiteHeader({ locale, page, t }: SectionProps & { page: Page }) {
       <div className="page-container relative flex items-center justify-between gap-3 py-5 sm:gap-6">
         <a
           href={home}
+          lang="en"
           className="corner corner-red pt-2.5 pl-3 font-display text-xl leading-none font-black whitespace-nowrap uppercase [font-stretch:62.5%] before:size-4 before:border-t-[3px] before:border-l-[3px] sm:text-2xl"
         >
           {t.brand.name}
         </a>
-        <div className="flex items-center gap-3 sm:gap-8">
+        <div className="flex items-center gap-3 sm:gap-8 xl:gap-6">
           <nav aria-label={t.nav.label} className="hidden xl:block">
-            <ul className="flex gap-6 text-base font-semibold">
+            <ul className="flex gap-5 text-[0.9375rem] font-semibold">
               {links.map((link) => (
                 <li key={link.href}>
                   <a

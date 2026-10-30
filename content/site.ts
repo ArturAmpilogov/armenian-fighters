@@ -1,24 +1,42 @@
-// Facts that are the same in every language. Anything left as `null` is not
-// shown on the site, so fill these in as they become available.
+// Facts that are the same in every language.
 
-export type Contact = {
-  email: string | null;
-  /** International format, e.g. "+374 99 123456". */
-  phone: string | null;
-  /** Digits only, international format, e.g. "37499123456". */
-  whatsapp: string | null;
-  /** Username without "@". */
-  telegram: string | null;
-  /** Username without "@". */
-  instagram: string | null;
+export type ContactChannel =
+  | "email"
+  | "phone"
+  | "whatsapp"
+  | "telegram"
+  | "instagram"
+  | "youtube";
+
+export type ContactLink = {
+  channel: ContactChannel;
+  /**
+   * Email; phone in international format ("+374 99 123456"); WhatsApp as
+   * digits ("37499123456"); or a username or handle without "@".
+   */
+  value: string;
+  /** The project's own account, or a coach's (an `id` from `about.people`). */
+  owner: "project" | "tigran" | "mkhitar";
 };
 
-const contact: Contact = {
-  email: null,
-  phone: null,
-  whatsapp: null,
-  telegram: null,
-  instagram: "black_tiger_nolimit",
+// The YouTube channel "Armenian fighters" lives at @black_tiger_nolimit.
+const youtube = "black_tiger_nolimit";
+const instagram = "_armenian_fighters_";
+
+// Shown in this order in "Contact". The YouTube channel has its own section,
+// so it isn't repeated here.
+const contact: ContactLink[] = [
+  { channel: "instagram", value: instagram, owner: "project" },
+  { channel: "instagram", value: "black_tiger_nolimit", owner: "tigran" },
+  // From Sportball24's profile of Mkhitar; see the README checklist.
+  { channel: "instagram", value: "mkhitar_barseghyan57mma", owner: "mkhitar" },
+];
+
+const channel = {
+  youtube: `https://www.youtube.com/@${youtube}`,
+  instagram: `https://www.instagram.com/${instagram}/`,
+  /** The episode shown on the home page: the debut, with Suren Petrosyan. */
+  episode: "xr253o72jTM",
 };
 
 export type Club = {
@@ -26,7 +44,7 @@ export type Club = {
   url: string;
 };
 
-// Professional clubs where Tigran coaches, named in "About".
+// Professional clubs where Tigran coaches, named in his profile.
 const clubs: Club[] = [
   { name: "Lion Heart", url: "https://lionheart.am/" },
   { name: "ARM.MEN", url: "https://www.instagram.com/armmenclub/" },
@@ -36,9 +54,11 @@ const clubs: Club[] = [
 const donateUrl: string | null = null;
 
 export const site = {
-  // Chosen domain, not registered yet. Used for canonical and social links.
-  url: "https://tigrancoach.com",
+  // Planned domain, not registered yet (armenianfighters.com is taken). Used
+  // for canonical and social links.
+  url: "https://armenianfighters.am",
   contact,
+  channel,
   clubs,
   donateUrl,
 };

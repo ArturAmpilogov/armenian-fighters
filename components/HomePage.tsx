@@ -2,6 +2,7 @@ import { getMessages } from "@/content/messages";
 import type { Locale } from "@/lib/i18n";
 import { PageShell } from "./PageShell";
 import { About } from "./sections/About";
+import { Channel } from "./sections/Channel";
 import { Contact } from "./sections/Contact";
 import { Costs } from "./sections/Costs";
 import { Hero } from "./sections/Hero";
@@ -17,6 +18,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <Hero {...props} />
       <Results {...props} />
       <About {...props} />
+      <Channel {...props} />
       <Why {...props} />
       <Costs {...props} />
       <Support {...props} />

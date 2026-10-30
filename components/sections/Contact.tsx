@@ -1,20 +1,10 @@
 import type { ReactNode } from "react";
-import { site, type Contact as ContactDetails } from "@/content/site";
+import { site, type ContactChannel, type ContactLink } from "@/content/site";
 import type { SectionProps } from "./types";
-
-type Channel = keyof ContactDetails;
-
-const channels: Channel[] = [
-  "email",
-  "phone",
-  "whatsapp",
-  "telegram",
-  "instagram",
-];
 
 // Outline glyphs drawn on a 24px grid, one per channel, so each contact reads
 // at a glance.
-const channelIcons: Record<Channel, ReactNode> = {
+const channelIcons: Record<ContactChannel, ReactNode> = {
   email: (
     <>
       <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -43,9 +33,15 @@ const channelIcons: Record<Channel, ReactNode> = {
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
     </>
   ),
+  youtube: (
+    <>
+      <rect x="2.5" y="5" width="19" height="14" rx="4" />
+      <path d="m10 9 5 3-5 3z" fill="currentColor" />
+    </>
+  ),
 };
 
-function ChannelIcon({ channel }: { channel: Channel }) {
+function ChannelIcon({ channel }: { channel: ContactChannel }) {
   return (
     <svg
       aria-hidden="true"
@@ -62,7 +58,7 @@ function ChannelIcon({ channel }: { channel: Channel }) {
   );
 }
 
-function channelLink(channel: Channel, value: string) {
+function channelLink({ channel, value }: ContactLink) {
   switch (channel) {
     case "email":
       return { href: `mailto:${value}`, text: value };
@@ -74,13 +70,25 @@ function channelLink(channel: Channel, value: string) {
       return { href: `https://t.me/${value}`, text: `@${value}` };
     case "instagram":
       return { href: `https://www.instagram.com/${value}/`, text: `@${value}` };
+    case "youtube":
+      return { href: `https://www.youtube.com/@${value}`, text: `@${value}` };
   }
 }
 
 export function Contact({ t }: SectionProps) {
-  const links = channels.flatMap((channel) => {
-    const value = site.contact[channel];
-    return value === null ? [] : [{ channel, ...channelLink(channel, value) }];
+  // Each card says whose account it is (the project or a coach) in big type,
+  // with the handle underneath: handles can be too long for big type.
+  const links = site.contact.map((contact) => {
+    const coach = t.about.people.find((person) => person.id === contact.owner);
+    const { href, text } = channelLink(contact);
+    return {
+      key: `${contact.channel}-${contact.value}`,
+      channel: contact.channel,
+      href,
+      owner: coach?.name ?? t.brand.name,
+      // The channel's handle is Tigran's nickname, so name the platform.
+      detail: contact.channel === "youtube" ? t.contact.labels.youtube : text,
+    };
   });
 
   return (
@@ -89,7 +97,7 @@ export function Contact({ t }: SectionProps) {
       aria-labelledby="contact-title"
       className="on-blue bg-flag-blue text-white"
     >
-      <div className="page-container section-pad grid gap-12 lg:grid-cols-12 lg:gap-8">
+      <div className="page-container section-pad grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-7">
           <h2 id="contact-title" className="poster-title poster-title-lg">
             {t.contact.title}
@@ -103,7 +111,7 @@ export function Contact({ t }: SectionProps) {
           {links.length > 0 ? (
             <ul className="space-y-5">
               {links.map((link) => (
-                <li key={link.channel}>
+                <li key={link.key}>
                   {/* Each channel is one big card: the whole card is the link. */}
                   <a
                     href={link.href}
@@ -113,11 +121,11 @@ export function Contact({ t }: SectionProps) {
                       <ChannelIcon channel={link.channel} />
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-base text-ink-soft group-hover:text-ink">
-                        {t.contact.labels[link.channel]}
+                      <span className="block text-xl font-bold sm:text-2xl">
+                        {link.owner}
                       </span>
-                      <span className="block text-xl font-bold break-words sm:text-2xl xl:text-3xl">
-                        {link.text}
+                      <span className="block text-base [overflow-wrap:anywhere] text-ink-soft group-hover:text-ink">
+                        {link.detail}
                       </span>
                     </span>
                   </a>

@@ -4,7 +4,7 @@ import { fontVariables } from "@/lib/fonts";
 import { localeNames, localePath, locales } from "@/lib/i18n";
 
 export const metadata: Metadata = {
-  title: "Page not found | Tigran Petrosyan",
+  title: "Page not found | Armenian Fighters",
 };
 
 export default function GlobalNotFound() {

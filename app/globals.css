@@ -39,6 +39,12 @@
     --display-scale: 0.78;
   }
 
+  /* Latin text inside an Armenian page, like the project name, keeps full
+     size: the variable would otherwise inherit 0.78 from the page. */
+  [lang="en"] {
+    --display-scale: 1;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
@@ -105,7 +111,7 @@
     font-size: calc(clamp(4.5rem, 19vw, 10.5rem) * var(--display-scale));
   }
 
-  /* The coach's name across the cover: sized so "Petrosyan" fits on one line. */
+  /* The project's name across the cover: sized so "Fighters" fits on one line. */
   .poster-title-name {
     font-size: calc(clamp(4rem, 15vw, 11rem) * var(--display-scale));
   }

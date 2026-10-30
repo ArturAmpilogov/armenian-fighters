@@ -1,14 +1,15 @@
 import type { SectionProps } from "./types";
 
-// A fight-poster cover: the coach's name across the page, his role, then the
-// story and the two actions.
+// A fight-poster cover: the project's name across the page, the two coaches,
+// then the story and the two actions.
 export function Hero({ t }: SectionProps) {
   return (
     <section
       aria-labelledby="hero-title"
       className="page-container pt-8 pb-20 md:pt-14 lg:pb-28"
     >
-      <h1 id="hero-title" className="poster-title poster-title-name">
+      {/* The project name stays in Latin letters in every language. */}
+      <h1 id="hero-title" lang="en" className="poster-title poster-title-name">
         {t.brand.name}
       </h1>
       <div className="mt-8 grid gap-8 lg:mt-12 lg:grid-cols-12 lg:gap-10">

@@ -1,14 +1,17 @@
-# Tigran Petrosyan, professional conditioning and MMA coach
+# Armenian Fighters
 
-The website of Tigran Petrosyan, a professional conditioning and MMA coach in
-Yerevan, built for sponsors. It has three pages:
+The website of Armenian Fighters, the project of Tigran Petrosyan and Mkhitar
+Barseghyan, MMA coaches at the Lion Heart academy in Yerevan. It is built for
+sponsors, and pitches support for the project as support for MMA in Armenia.
+It has three pages:
 
-- **Home**: the cover, championship results of athletes who train with him,
-  about Tigran, why support him, what the money pays for, ways to support
-  (companies and individuals), and contacts.
+- **Home**: the cover, championship results of athletes who train with them,
+  the two coaches, the Armenian Fighters YouTube channel, why support the
+  project, what the money pays for, ways to support (companies and
+  individuals), and contacts.
 - **News**: championships, interviews and club news, newest first. More news
   loads as you scroll.
-- **Sponsors**: everyone who supports him, split into companies and individuals,
+- **Sponsors**: everyone who supports the project, split into companies and individuals,
   newest first and grouped by month.
 
 Languages: English at `/` (main), Armenian at `/hy/`, Russian at `/ru/`. The
@@ -19,10 +22,13 @@ hosted for free on Cloudflare Pages, Netlify or GitHub Pages.
 
 ## Who the site speaks for
 
-The site is about Tigran's own work. The athletes belong to themselves, their
-families and their clubs, and other coaches work with them too. So the copy:
+The site is about the two coaches' own work. The athletes belong to
+themselves, their families and their clubs. So the copy:
 
-- says "athletes who train with him", never "his athletes" or "his team";
+- says "athletes who train with them", never "their athletes" or "their team";
+- says something about both coaches only when a source credits both (for
+  example the 2026 world medals); facts about one coach go in that coach's
+  profile;
 - credits each athlete's club next to their result (`club` in
   `content/results.ts`);
 - never says who pays for trips today, and never describes Armenian sport as
@@ -130,9 +136,9 @@ The site is a draft. Check these before it goes live.
 
 **People to ask first**
 
-- [ ] Tigran approves every word: the site speaks in his name.
-- [ ] Show the page to the director of Tigran's current club before it goes
-      live, and credit him where he coaches the same athletes.
+- [ ] Tigran and Mkhitar approve every word: the site speaks in their names.
+- [ ] Show the page to the director of Lion Heart before it goes live: both
+      coaches work there, and the club is credited next to each result.
 - [ ] Each named athlete agrees to appear, and a parent for under-18s.
 - [ ] Each athlete's club, filled in as `club` in `content/results.ts`.
 - [ ] Every sponsor agrees to be listed on the sponsors page.
@@ -171,8 +177,13 @@ The site is a draft. Check these before it goes live.
       is used to name the championship, not to suggest IMMAF endorses the
       site. Remove it if IMMAF asks: set `organizerLogo` to `null` in
       `content/results.ts` and the board shows "IMMAF" as text.
-- [ ] Tigran travelled with the athletes to Abu Dhabi (stated in "About").
-- [ ] The facts list in "About" comes from two public sources. The coaches
+- [ ] Mkhitar's profile: "MMA & freestyle" coach at Lion Heart is from
+      Sportaran's article on the academy's opening (22 November 2025).
+      Professional MMA fighter, wrestling style, ACA and Eagle FC, born in
+      Tashir: Sportball24's profile, whose fight list ends in March 2024. The
+      site leaves out his record and weight class; ask him what he wants shown
+      (titles, ranks, years of coaching).
+- [ ] Tigran's facts list in "The coaches" comes from two public sources. The coaches
       poster on lionheart.am/en/trenera gives the All-Russian tournament wins
       in judo, SAMBO and combat SAMBO, the nine years as an instructor for
       military personnel and Interior Ministry officers, and conditioning for
@@ -201,9 +212,9 @@ The site is a draft. Check these before it goes live.
       or another official such as timekeeper.
 - [ ] Armenia Open, the six-month summary and Armat Fight Show are Lion Heart
       club news from Sportaran; the cards credit the club, not Tigran.
-- [ ] "About" names the professional clubs Lion Heart and ARM.MEN (links in
-      `content/site.ts`), as Artur asked on 2026-10-30. Show the page to
-      both clubs before it goes live.
+- [ ] Tigran's profile names the professional clubs Lion Heart and ARM.MEN
+      (links in `content/site.ts`), as Artur asked on 2026-10-30. Show the
+      page to both clubs before it goes live.
 
 **Language**
 
@@ -212,21 +223,26 @@ The site is a draft. Check these before it goes live.
 
 **Setup**
 
-- [ ] Instagram is set (`black_tiger_nolimit`). Add email, phone or WhatsApp in
-      `content/site.ts` if he wants sponsors to use them.
+- [ ] Contacts in `content/site.ts`: the project's Instagram
+      (`_armenian_fighters_`, the account that announced the first episode),
+      Tigran's (`black_tiger_nolimit`) and Mkhitar's (`mkhitar_barseghyan57mma`,
+      from Sportball24). The YouTube channel (`@black_tiger_nolimit`, shown as
+      "Armenian fighters") has its own section, not a contact card. Confirm the
+      handles with the coaches, and add email, phone or WhatsApp if they want
+      sponsors to use them.
 - [ ] Donate link in `content/site.ts`, once there is a way to receive money
       (an organisation or a fiscal sponsor). Until then, the individuals' "Become a sponsor" button leads
       to the contacts.
-- [ ] Register `tigrancoach.com` (free on 2026-10-30). It's already set as
-      `url` in `content/site.ts`, used for canonical links and the sitemap.
-      Optional extra domains that redirect to it: `blacktigernolimit.com` (his
-      Instagram nickname, for his bio) and `coachtigran.am`. Both were free on
-      2026-10-30. Don't use `coach-tigran.com`: `coachtigran.com` belongs to
-      someone else, so a missed hyphen sends visitors there.
+- [ ] Choose and register the domain. `armenianfighters.am` (free on
+      2026-10-30) is set as `url` in `content/site.ts`, used for canonical
+      links and the sitemap. `armenianfighters.com` and `armenianfighters.org`
+      are taken. Don't use `armenian-fighters.com`: a missed hyphen sends
+      visitors to someone else's `armenianfighters.com`. `armenianfighters.net`
+      was also free.
 - [ ] News photos (`public/images/news/`) are the publishers' own: IMMAF,
       Sportaran, Sportball24, and Instagram posts by Lion Heart, the MMA
       Federation of Armenia and Armenian MMA. YouTube cards show YouTube's own
       thumbnail and play through youtube-nocookie.com. Each is credited on its card, and
       Artur chose to use them. Ask the publishers if possible, and remove any
       photo on request.
-- [ ] Rename the folder and repository to match the domain, e.g. `tigrancoach`.
+- [ ] Rename the folder and repository to `armenian-fighters` (the package name).
