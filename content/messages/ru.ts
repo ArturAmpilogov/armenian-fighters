@@ -111,7 +111,7 @@ export const ru: Messages = {
         facts: [
           {
             label: "Тренерская работа",
-            text: "Тренирует MMA и вольную борьбу в Lion Heart.",
+            text: "Тренирует MMA и вольную борьбу в {clubs}.",
           },
           {
             label: "Как боец",

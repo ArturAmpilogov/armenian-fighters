@@ -15,9 +15,12 @@ export type ContactLink = {
    * digits ("37499123456"); or a username or handle without "@".
    */
   value: string;
-  /** The project's own account, or a coach's (an `id` from `about.people`). */
-  owner: "project" | "tigran" | "mkhitar";
+  /** The project's own account, or a coach's. */
+  owner: "project" | CoachId;
 };
+
+/** Matches `id` in each coach profile (`about.people` in the messages). */
+export type CoachId = "tigran" | "mkhitar";
 
 // The YouTube channel "Armenian fighters" lives at @black_tiger_nolimit.
 const youtube = "black_tiger_nolimit";
@@ -44,11 +47,18 @@ export type Club = {
   url: string;
 };
 
-// Professional clubs where Tigran coaches, named in his profile.
-const clubs: Club[] = [
-  { name: "Lion Heart", url: "https://lionheart.am/" },
-  { name: "ARM.MEN", url: "https://www.instagram.com/armmenclub/" },
-];
+const lionHeart: Club = { name: "Lion Heart", url: "https://lionheart.am/" };
+const armMen: Club = {
+  name: "ARM.MEN",
+  url: "https://www.instagram.com/armmenclub/",
+};
+
+// Professional clubs where each coach works, linked where a profile fact says
+// "{clubs}".
+const clubs: Record<CoachId, Club[]> = {
+  tigran: [lionHeart, armMen],
+  mkhitar: [lionHeart],
+};
 
 // Payment or fundraising page. The donate button appears once this is set.
 const donateUrl: string | null = null;

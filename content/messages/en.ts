@@ -90,7 +90,7 @@ export const en = {
     and: "and",
     people: [
       {
-        id: "tigran",
+        id: "tigran" as const,
         name: "Tigran Petrosyan",
         // His own wording from Instagram: "Проф. тренер по физподготовке & MMA".
         role: "Professional conditioning and MMA coach",
@@ -118,13 +118,13 @@ export const en = {
         ],
       },
       {
-        id: "mkhitar",
+        id: "mkhitar" as const,
         name: "Mkhitar Barseghyan",
         role: "MMA and freestyle wrestling coach",
         facts: [
           {
             label: "Coaching",
-            text: "Coaches MMA and freestyle wrestling at Lion Heart.",
+            text: "Coaches MMA and freestyle wrestling at {clubs}.",
           },
           {
             label: "As a fighter",

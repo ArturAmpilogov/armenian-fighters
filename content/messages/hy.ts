@@ -112,7 +112,7 @@ export const hy: Messages = {
         facts: [
           {
             label: "Մարզչական աշխատանք",
-            text: "Lion Heart-\u2060ում մարզում է MMA և ազատ ոճի ըմբշամարտ։",
+            text: "{clubs}-\u2060ում մարզում է MMA և ազատ ոճի ըմբշամարտ։",
           },
           {
             label: "Որպես մարտիկ",

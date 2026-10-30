@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { site } from "@/content/site";
+import { site, type Club } from "@/content/site";
 import type { SectionProps } from "./types";
 
 const factRow =
@@ -7,15 +7,23 @@ const factRow =
 const factLabel =
   "font-display text-xl font-bold [font-stretch:70%] text-corner-red";
 
-/** "…the professional clubs {clubs}." with each club linked. */
-function ClubsSentence({ text, and }: { text: string; and: string }) {
+/** "…the professional clubs {clubs}." with each of the coach's clubs linked. */
+function ClubsSentence({
+  text,
+  clubs,
+  and,
+}: {
+  text: string;
+  clubs: Club[];
+  and: string;
+}) {
   const [before, after = ""] = text.split("{clubs}");
-  const last = site.clubs.length - 1;
+  const last = clubs.length - 1;
 
   return (
     <>
       {before}
-      {site.clubs.map((club, i) => (
+      {clubs.map((club, i) => (
         <Fragment key={club.name}>
           {i > 0 ? (i === last ? ` ${and} ` : ", ") : null}
           <a
@@ -65,7 +73,11 @@ export function About({ t }: SectionProps) {
                   <dt className={factLabel}>{fact.label}</dt>
                   <dd className="min-w-0">
                     {fact.text.includes("{clubs}") ? (
-                      <ClubsSentence text={fact.text} and={about.and} />
+                      <ClubsSentence
+                        text={fact.text}
+                        clubs={site.clubs[person.id]}
+                        and={about.and}
+                      />
                     ) : (
                       fact.text
                     )}
