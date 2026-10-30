@@ -245,4 +245,7 @@ The site is a draft. Check these before it goes live.
       thumbnail and play through youtube-nocookie.com. Each is credited on its card, and
       Artur chose to use them. Ask the publishers if possible, and remove any
       photo on request.
-- [ ] Rename the folder and repository to `armenian-fighters` (the package name).
+- [x] The folder and GitHub repository are renamed to `armenian-fighters`
+      (2026-10-30); the old repository URL redirects.
+- [ ] Rename the Vercel project to `armenian-fighters` (Vercel → Settings →
+      General) for an `armenian-fighters.vercel.app` address.
