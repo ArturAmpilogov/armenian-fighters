@@ -19,12 +19,14 @@ export function SiteHeader({ locale, page, t }: SectionProps & { page: Page }) {
     label: t.nav.news,
     hint: t.nav.newsHint,
     current: page === "news",
+    tile: "bg-corner-red hover:bg-corner-red-dark",
   };
   const sponsors = {
     href: localePath(locale, "sponsors"),
     label: t.nav.sponsors,
     hint: t.nav.sponsorsHint,
     current: page === "sponsors",
+    tile: "bg-ink hover:bg-flag-blue",
   };
   const pages = [news, sponsors];
   const sections = [results, about, support, contact];
@@ -95,14 +97,15 @@ export function SiteHeader({ locale, page, t }: SectionProps & { page: Page }) {
               className="absolute inset-x-4 top-full z-20 hidden border-[3px] border-ink bg-paper p-2 shadow-[6px_6px_0_var(--color-ink)] group-open:block sm:right-8 sm:left-auto sm:w-72"
             >
               {/* The two pages come first, as big tiles, so they don't get lost
-                  among the home page sections. */}
+                  among the home page sections. Each tile keeps its colour; an
+                  apricot bar on the left marks the page you're on. */}
               <ul className="grid gap-2">
                 {pages.map((link) => (
                   <li key={link.href}>
                     <a
                       href={link.href}
                       aria-current={link.current ? "page" : undefined}
-                      className="block bg-ink px-4 py-3 text-white transition-colors hover:bg-flag-blue aria-[current=page]:bg-corner-red"
+                      className={`block px-4 py-3 text-white transition-colors aria-[current=page]:shadow-[inset_6px_0_0_var(--color-apricot)] ${link.tile}`}
                     >
                       <span className="block font-display text-2xl leading-tight font-bold [font-stretch:70%]">
                         {link.label}
