@@ -29,6 +29,8 @@ export const en = {
     support: "Support",
     news: "News",
     sponsors: "Sponsors",
+    newsHint: "Championships, interviews and fight nights",
+    sponsorsHint: "Companies and people who back his work",
     contact: "Contact",
   },
   languageSwitcher: "Language",

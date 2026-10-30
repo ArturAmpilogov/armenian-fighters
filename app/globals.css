@@ -110,8 +110,12 @@
     font-size: calc(clamp(4rem, 15vw, 11rem) * var(--display-scale));
   }
 
+  /* The floor shrinks below 400px so one-word Armenian titles like
+     "Նորություններ" still fit on a 320px phone. */
   .poster-title-lg {
-    font-size: calc(clamp(3.5rem, 10vw, 7.5rem) * var(--display-scale));
+    font-size: calc(
+      clamp(min(3.5rem, 14vw), 10vw, 7.5rem) * var(--display-scale)
+    );
   }
 
   .section-title {

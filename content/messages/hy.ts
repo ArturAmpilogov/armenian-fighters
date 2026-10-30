@@ -21,6 +21,8 @@ export const hy: Messages = {
     support: "Աջակցություն",
     news: "Նորություններ",
     sponsors: "Հովանավորներ",
+    newsHint: "Առաջնություններ, հարցազրույցներ և մրցաշարեր",
+    sponsorsHint: "Ընկերություններ և մարդիկ, ովքեր աջակցում են նրա աշխատանքին",
     contact: "Կապ",
   },
   languageSwitcher: "Լեզու",

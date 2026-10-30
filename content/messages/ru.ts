@@ -21,6 +21,8 @@ export const ru: Messages = {
     support: "Поддержка",
     news: "Новости",
     sponsors: "Спонсоры",
+    newsHint: "Чемпионаты, интервью и турниры",
+    sponsorsHint: "Компании и люди, которые поддерживают его работу",
     contact: "Контакты",
   },
   languageSwitcher: "Язык",
