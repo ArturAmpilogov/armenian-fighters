@@ -1,11 +1,7 @@
 import { Fragment } from "react";
 import { site, type Club } from "@/content/site";
+import { factLabel, factRow } from "../facts";
 import type { SectionProps } from "./types";
-
-const factRow =
-  "grid gap-1 border-ink/15 py-4 not-first:border-t-2 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-5";
-const factLabel =
-  "font-display text-xl font-bold [font-stretch:70%] text-corner-red";
 
 /** "…the professional clubs {clubs}." with each of the coach's clubs linked. */
 function ClubsSentence({

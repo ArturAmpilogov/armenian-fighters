@@ -135,16 +135,6 @@ export function Contact({ t }: SectionProps) {
           ) : (
             <p className="text-xl text-white/85">{t.contact.comingSoon}</p>
           )}
-          {site.donateUrl !== null ? (
-            <a
-              href={site.donateUrl}
-              className="btn btn-apricot mt-10"
-              rel="noopener"
-              target="_blank"
-            >
-              {t.contact.donate}
-            </a>
-          ) : null}
         </div>
       </div>
     </section>

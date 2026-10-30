@@ -7,7 +7,7 @@ import {
   type CompanySponsor,
   type IndividualSponsor,
 } from "@/content/sponsors";
-import type { Locale } from "@/lib/i18n";
+import { localePath, type Locale } from "@/lib/i18n";
 import { groupByMonth, monthLabel, type MonthGroup } from "@/lib/sponsors";
 import { PageShell } from "./PageShell";
 import { Contact } from "./sections/Contact";
@@ -57,6 +57,7 @@ function SponsorGroup<T extends { since: string }>({
   locale,
   empty,
   action,
+  href,
   className,
   renderMonth,
 }: {
@@ -67,6 +68,7 @@ function SponsorGroup<T extends { since: string }>({
   locale: Locale;
   empty: string;
   action: string;
+  href: string;
   className: string;
   renderMonth: (items: T[]) => ReactNode;
 }) {
@@ -83,7 +85,7 @@ function SponsorGroup<T extends { since: string }>({
         {groups.length === 0 ? (
           <div className="mt-10 max-w-[36rem]">
             <p className="text-xl leading-relaxed">{empty}</p>
-            <a href="#contact" className="btn btn-primary mt-8">
+            <a href={href} className="btn btn-primary mt-8">
               {action}
             </a>
           </div>
@@ -201,6 +203,7 @@ export function SponsorsPage({ locale }: { locale: Locale }) {
         locale={locale}
         empty={sponsors.emptyCompanies}
         action={support.company.action}
+        href="#contact"
         className="border-t-[3px] border-ink"
         renderMonth={(items) => <Companies items={items} />}
       />
@@ -212,6 +215,7 @@ export function SponsorsPage({ locale }: { locale: Locale }) {
         locale={locale}
         empty={sponsors.emptyIndividuals}
         action={support.individual.action}
+        href={localePath(locale, "sponsor")}
         className="bg-mat"
         renderMonth={(items) => <Individuals items={items} />}
       />

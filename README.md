@@ -3,7 +3,7 @@
 The website of Armenian Fighters, the project of Tigran Petrosyan and Mkhitar
 Barseghyan, MMA coaches at the Lion Heart academy in Yerevan. It is built for
 sponsors, and pitches support for the project as support for MMA in Armenia.
-It has three pages:
+It has six pages:
 
 - **Home**: the cover, championship results of athletes who train with them,
   the two coaches, the Armenian Fighters YouTube channel, why support the
@@ -13,6 +13,12 @@ It has three pages:
   loads as you scroll.
 - **Sponsors**: everyone who supports the project, split into companies and individuals,
   newest first and grouped by month.
+- **Become a sponsor** (`/become-a-sponsor/`): the card payment form for
+  individuals, once or every month, with what the money pays for and how
+  payments work. The form stays closed until card payments are connected (see
+  "Card payments" below).
+- **Payment terms** and **Privacy policy** (`/payment-terms/`, `/privacy/`):
+  what Ameriabank requires on a merchant's site, linked from the footer.
 
 Languages: English at `/` (main), Armenian at `/hy/`, Russian at `/ru/`. The
 other pages follow the same pattern, e.g. `/news/`, `/hy/news/`, `/ru/news/`.
@@ -66,7 +72,7 @@ change what the site says.
 | `content/results.ts`     | Championships, medals, athletes, clubs, fight details and source links, in all three languages. |
 | `content/news.ts`        | News items, with photos in `public/images/news/`.                                               |
 | `content/sponsors.ts`    | Company and individual sponsors.                                                                |
-| `content/site.ts`        | Contacts, donate link and the site address. `null` hides an item.                               |
+| `content/site.ts`        | Contacts, the site address, card payment settings and the seller's details.                     |
 
 ### Add a sponsor
 
@@ -115,8 +121,11 @@ To add a language, add it to `locales` in `lib/i18n.ts` and add a messages file.
 - `app/global-not-found.tsx` is the 404 page (needed because there are two root
   layouts).
 - `components/PageShell.tsx` wraps every page with the header and footer.
-  `components/HomePage.tsx` and `components/SponsorsPage.tsx` put the sections
+  `components/HomePage.tsx`, `components/SponsorsPage.tsx`,
+  `components/SponsorPage.tsx` and `components/LegalPage.tsx` put the pages
   together; home sections are in `components/sections/`.
+- `components/SponsorForm.tsx` is the payment form, the only interactive part
+  besides the news feed and the video players.
 - Colours and type are in `app/globals.css`. The palette is the Armenian flag:
   blue for text and structure, red for actions, apricot only for gold. Blue
   marks companies and red marks individuals.
@@ -230,9 +239,31 @@ The site is a draft. Check these before it goes live.
       "Armenian fighters") has its own section, not a contact card. Confirm the
       handles with the coaches, and add email, phone or WhatsApp if they want
       sponsors to use them.
-- [ ] Donate link in `content/site.ts`, once there is a way to receive money
-      (an organisation or a fiscal sponsor). Until then, the individuals' "Become a sponsor" button leads
-      to the contacts.
+- [ ] Card payments through Ameriabank. The bank's merchant must be an
+      individual entrepreneur (ԱՁ) or a company that banks with Ameriabank.
+      Tigran asks the bank for:
+  - [ ] an Internet Acquiring (vPOS) contract;
+  - [ ] test access to vPOS 3.1 (ClientID, username, password and test cards),
+        and whether test order numbers must fall in a set range;
+  - [ ] card binding switched on, which monthly payments need;
+  - [ ] which currencies the contract covers (AMD at least; USD and EUR for
+        the diaspora) and which cards (`payments.cards` shows Visa and
+        Mastercard);
+  - [ ] how the bank classes the payments: "donations for own website" are
+        capped at 50,000 AMD per payment (`payments.max`);
+  - [ ] whether the bank only accepts API calls from fixed IP addresses, which
+        Vercel doesn't give;
+  - [ ] the fee and the payout schedule.
+- [ ] Once there is test access: build the server part that starts payments,
+      checks them and runs monthly charges, then set `payments.endpoint` in
+      `content/site.ts` to open the form. That means leaving `output: "export"`
+      for Vercel functions, and Vercel Pro ($20 a month): the free plan doesn't
+      allow taking payments from visitors.
+- [ ] Seller details in `content/site.ts` (`merchant`): legal name, ՀՎՀՀ,
+      address, phone and email, as on the bank contract. The bank requires
+      them on the site; until then the pages say "To be added".
+- [ ] Tigran confirms the payment terms and the privacy policy before payments
+      open, especially refunds within 14 days. They are a draft.
 - [ ] Register `armenianfighters.am` (chosen and still free on 2026-10-30)
       and add it in Vercel → Settings → Domains. It is already `url` in
       `content/site.ts`, used for canonical links and the sitemap. Register it

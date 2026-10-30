@@ -1,4 +1,3 @@
-import { site } from "@/content/site";
 import { localePath } from "@/lib/i18n";
 import type { SectionProps } from "./types";
 
@@ -9,7 +8,6 @@ type SupportCardProps = {
   perk: string;
   action: string;
   href: string;
-  external: boolean;
 };
 
 function SupportCard({
@@ -19,7 +17,6 @@ function SupportCard({
   perk,
   action,
   href,
-  external,
 }: SupportCardProps) {
   return (
     <article
@@ -37,11 +34,7 @@ function SupportCard({
         {perk}
       </p>
       <div className="mt-auto pt-10">
-        <a
-          href={href}
-          className="btn btn-primary"
-          {...(external ? { rel: "noopener", target: "_blank" } : {})}
-        >
+        <a href={href} className="btn btn-primary">
           {action}
         </a>
       </div>
@@ -49,8 +42,8 @@ function SupportCard({
   );
 }
 
-// Two ways in, nothing else: a company sponsors, a person supports. Both are
-// thanked on the sponsors page.
+// Two ways in, nothing else: a company talks to the coaches, a person pays by
+// card on "Become a sponsor". Both are thanked on the sponsors page.
 export function Support({ locale, t }: SectionProps) {
   const { support } = t;
 
@@ -64,17 +57,11 @@ export function Support({ locale, t }: SectionProps) {
         {support.title}
       </h2>
       <div className="mt-12 grid gap-6 md:grid-cols-2 md:gap-8">
-        <SupportCard
-          corner="blue"
-          {...support.company}
-          href="#contact"
-          external={false}
-        />
+        <SupportCard corner="blue" {...support.company} href="#contact" />
         <SupportCard
           corner="red"
           {...support.individual}
-          href={site.donateUrl ?? "#contact"}
-          external={site.donateUrl !== null}
+          href={localePath(locale, "sponsor")}
         />
       </div>
       <p className="mt-10">

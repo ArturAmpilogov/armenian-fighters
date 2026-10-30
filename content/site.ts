@@ -60,8 +60,56 @@ const clubs: Record<CoachId, Club[]> = {
   mkhitar: [lionHeart],
 };
 
-// Payment or fundraising page. The donate button appears once this is set.
-const donateUrl: string | null = null;
+export type CardBrand = "visa" | "mastercard";
+
+export type Payments = {
+  /**
+   * The server address that starts an Ameriabank card payment. The form on
+   * "Become a sponsor" stays closed until this is set (see the README).
+   */
+  endpoint: string | null;
+  /** Amounts offered as buttons, in AMD. */
+  amounts: number[];
+  min: number;
+  max: number;
+  /** Card logos shown under the form. */
+  cards: CardBrand[];
+};
+
+const payments: Payments = {
+  endpoint: null,
+  amounts: [2000, 5000, 10000, 20000, 50000],
+  min: 1000,
+  // Ameriabank allows at most 50,000 AMD per payment for "donations for own
+  // website" (Annex 1 of its Internet Acquiring terms, edition 9).
+  max: 50000,
+  // Confirm with the bank which cards the contract covers.
+  cards: ["visa", "mastercard"],
+};
+
+/**
+ * Who receives card payments: the individual entrepreneur or company on the
+ * Ameriabank contract. The bank requires these on the site. `null` shows
+ * "To be added".
+ */
+export type Merchant = {
+  /** Legal name, as on the contract. */
+  name: string | null;
+  /** Armenian taxpayer ID (ՀՎՀՀ). */
+  taxId: string | null;
+  address: string | null;
+  /** In international format, "+374 99 123456". */
+  phone: string | null;
+  email: string | null;
+};
+
+const merchant: Merchant = {
+  name: null,
+  taxId: null,
+  address: null,
+  phone: null,
+  email: null,
+};
 
 export const site = {
   // Chosen domain, not registered yet (armenianfighters.com is taken). Used
@@ -70,5 +118,6 @@ export const site = {
   contact,
   channel,
   clubs,
-  donateUrl,
+  payments,
+  merchant,
 };

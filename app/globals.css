@@ -124,6 +124,14 @@
     );
   }
 
+  /* Titles of the payment terms and privacy pages: one-word lines like
+     "конфиденциальности" must fit a 320px phone. */
+  .poster-title-md {
+    font-size: calc(
+      clamp(min(2.75rem, 10vw), 7vw, 5.5rem) * var(--display-scale)
+    );
+  }
+
   .section-title {
     font-size: calc(clamp(2.75rem, 7vw, 5rem) * var(--display-scale));
     font-weight: 900;

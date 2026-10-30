@@ -8,6 +8,9 @@
 // results and pride: never say who pays for trips today, and never describe
 // Armenian sport as short of money. Don't promise sponsors anything the coaches
 // haven't agreed to.
+//
+// The payment terms and privacy policy are a draft: Tigran confirms them,
+// refunds included, before card payments open (see the README checklist).
 
 export const en = {
   meta: {
@@ -219,6 +222,184 @@ export const en = {
     emptyCompanies: "No company sponsors yet. Yours could be the first.",
     emptyIndividuals: "No individual sponsors yet. You could be the first.",
   },
+  sponsor: {
+    title: "Become a sponsor",
+    lead: "Support MMA in Armenia by card, once or every month.",
+    money: "{amount} AMD",
+    closed: {
+      title: "Card payments aren't open yet",
+      body: "Until they open, write to the coaches and they'll tell you how to support the project.",
+      action: "Write to the coaches",
+    },
+    form: {
+      title: "Your payment",
+      frequency: "How often",
+      once: "Once",
+      monthly: "Every month",
+      amount: "Amount",
+      other: "Other amount",
+      otherHint: "From {min} to {max}",
+      name: "Your name for the sponsors page",
+      nameHint: "Optional. Leave it empty to stay anonymous.",
+      email: "Email for receipts",
+      agree: "I agree to the {terms} and the {privacy}.",
+      termsLink: "payment terms",
+      privacyLink: "privacy policy",
+      agreeMonthly:
+        "I understand that this amount will be charged to my card every month until I cancel.",
+      summaryOnce: "{amount}, once",
+      summaryMonthly: "{amount} every month, until you cancel",
+      pay: "Pay {amount}",
+      payPlain: "Pay",
+      cards: "Accepted cards",
+      secure:
+        "You enter your card details on Ameriabank's secure payment page. We never see or store your card number.",
+    },
+    how: {
+      title: "How it works",
+      items: [
+        {
+          label: "Payment",
+          text: "By Visa or Mastercard, on Ameriabank's payment page. Amounts are in Armenian drams (AMD). If your card is in another currency, your bank converts the amount.",
+        },
+        {
+          label: "Every month",
+          text: "Your card is charged on the same day each month. Each receipt has a link to cancel, and cancelling stops all future payments.",
+        },
+        {
+          label: "Receipts",
+          text: "Sent to your email after each payment.",
+        },
+        {
+          label: "Refunds",
+          text: "If you paid by mistake, write to us within 14 days and we'll refund the payment to the same card.",
+        },
+        {
+          label: "Your name",
+          text: "If you give a name, it appears on the sponsors page. Ask us any time to remove it.",
+        },
+      ],
+    },
+  },
+  seller: {
+    title: "Seller",
+    name: "Name",
+    taxId: "Taxpayer ID (ՀՎՀՀ)",
+    address: "Address",
+    phone: "Phone",
+    email: "Email",
+    pending: "To be added",
+  },
+  terms: {
+    title: "Payment terms",
+    lead: "How card payments to Armenian Fighters work: amounts, monthly payments, cancelling and refunds.",
+    updated: "Last updated on 31 October 2026",
+    sections: [
+      {
+        title: "Who receives the payment",
+        body: [
+          "Armenian Fighters is the project of MMA coaches Tigran Petrosyan and Mkhitar Barseghyan in Yerevan. Card payments on this site are received by the seller named above.",
+        ],
+      },
+      {
+        title: "What you pay for",
+        body: [
+          "A payment on this site is voluntary support for Armenian Fighters. It pays for the project's costs: travel to tournaments, entry fees and licences, medical checks and insurance, training gear and training camps.",
+          "You don't buy goods or services, and nothing is delivered. If you give a name, we list it on the sponsors page.",
+        ],
+      },
+      {
+        title: "Amounts and currency",
+        body: [
+          "You choose the amount, from {min} to {max} per payment. Amounts are in Armenian drams (AMD).",
+          "If your card is in another currency, your bank converts the amount at its own rate and may charge a fee.",
+        ],
+      },
+      {
+        title: "Card security",
+        body: [
+          "You enter your card details on Ameriabank's payment page, not on this site. The connection is encrypted, and your bank may ask you to confirm the payment with 3-D Secure, for example with a code by SMS.",
+          "We never see or store your card number. The bank only tells us whether the payment went through. We accept Visa and Mastercard.",
+        ],
+      },
+      {
+        title: "Monthly payments",
+        body: [
+          "If you choose to pay every month, the first payment is taken right away and then on the same day each month. If a month has no such day, the payment is taken on the month's last day.",
+          "Ameriabank keeps your card on file for these payments; we keep only a reference to it. After each payment, you get a receipt by email.",
+        ],
+      },
+      {
+        title: "Cancelling",
+        body: [
+          "You can cancel monthly payments at any time with the link in any receipt, or by writing to us. Cancelling stops all future payments, and the bank removes your card from file.",
+        ],
+      },
+      {
+        title: "Refunds",
+        body: [
+          "If you paid by mistake or were charged the wrong amount, write to us within 14 days of the payment. We refund the full amount to the same card. Your bank may take several business days to show it.",
+          "We don't give refunds in cash.",
+        ],
+      },
+      {
+        title: "Questions",
+        body: [
+          "Write to us using the seller's details above or the contacts on the home page. We reply in English, Armenian and Russian.",
+        ],
+      },
+    ],
+  },
+  privacy: {
+    title: "Privacy policy",
+    lead: "What personal data Armenian Fighters collects when you pay or write to us, and what we do with it.",
+    updated: "Last updated on 31 October 2026",
+    sections: [
+      {
+        title: "Who is responsible",
+        body: [
+          "The seller named above is responsible for the personal data collected on this site.",
+        ],
+      },
+      {
+        title: "What we collect",
+        body: [
+          "When you pay, we collect your email address, the amount and date of each payment, whether it's monthly, and the name for the sponsors page if you give one. The bank tells us whether each payment went through.",
+          "When you write to us, we receive what you send. We don't collect card numbers: you enter them only on Ameriabank's page.",
+        ],
+      },
+      {
+        title: "Why we use it",
+        body: [
+          "To take and confirm payments, send receipts, run and cancel monthly payments, list your name on the sponsors page if you asked, answer your messages, and keep the payment records that Armenian law requires.",
+        ],
+      },
+      {
+        title: "Who else receives it",
+        body: [
+          "Ameriabank, which processes card payments, and the services that host this site and send our emails, only to do that work. We don't sell your data or share it for advertising.",
+        ],
+      },
+      {
+        title: "How long we keep it",
+        body: [
+          "Payment records, for as long as Armenian law requires. Your name stays on the sponsors page until you ask us to remove it. Everything else is deleted once it's no longer needed.",
+        ],
+      },
+      {
+        title: "Your rights",
+        body: [
+          "You can ask what data we hold about you and ask us to correct or delete it, under the Law of the Republic of Armenia on Protection of Personal Data. Write to us using the seller's details above.",
+        ],
+      },
+      {
+        title: "Cookies",
+        body: [
+          "This site doesn't set cookies or use analytics. Videos load from YouTube (youtube-nocookie.com) only when you press play, and YouTube's privacy policy then applies. Ameriabank's payment page has its own privacy policy.",
+        ],
+      },
+    ],
+  },
   contact: {
     title: "Talk to the coaches",
     body: "Tell us how you'd like to help. We reply in English, Armenian and Russian.",
@@ -231,7 +412,6 @@ export const en = {
       youtube: "YouTube",
     },
     comingSoon: "Contact details are coming soon.",
-    donate: "Donate",
   },
 };
 

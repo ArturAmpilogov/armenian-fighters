@@ -36,6 +36,9 @@ export const pages = {
   home: "",
   news: "news/",
   sponsors: "sponsors/",
+  sponsor: "become-a-sponsor/",
+  terms: "payment-terms/",
+  privacy: "privacy/",
 } as const;
 
 export type Page = keyof typeof pages;

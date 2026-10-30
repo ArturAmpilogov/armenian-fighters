@@ -30,6 +30,18 @@ export function SiteFooter({ locale, page, t }: SectionProps & { page: Page }) {
         </a>
         <LanguageSwitcher locale={locale} page={page} t={t} />
       </div>
+      <ul className="flex w-full flex-wrap gap-x-6 gap-y-2 border-t-2 border-ink/15 pt-6">
+        <li>
+          <a href={localePath(locale, "terms")} className="text-link">
+            {t.terms.title}
+          </a>
+        </li>
+        <li>
+          <a href={localePath(locale, "privacy")} className="text-link">
+            {t.privacy.title}
+          </a>
+        </li>
+      </ul>
     </footer>
   );
 }
