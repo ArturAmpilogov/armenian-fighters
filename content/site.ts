@@ -64,7 +64,7 @@ const clubs: Record<CoachId, Club[]> = {
 const donateUrl: string | null = null;
 
 export const site = {
-  // Planned domain, not registered yet (armenianfighters.com is taken). Used
+  // Chosen domain, not registered yet (armenianfighters.com is taken). Used
   // for canonical and social links.
   url: "https://armenianfighters.am",
   contact,

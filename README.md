@@ -233,12 +233,15 @@ The site is a draft. Check these before it goes live.
 - [ ] Donate link in `content/site.ts`, once there is a way to receive money
       (an organisation or a fiscal sponsor). Until then, the individuals' "Become a sponsor" button leads
       to the contacts.
-- [ ] Choose and register the domain. `armenianfighters.am` (free on
-      2026-10-30) is set as `url` in `content/site.ts`, used for canonical
-      links and the sitemap. `armenianfighters.com` and `armenianfighters.org`
-      are taken. Don't use `armenian-fighters.com`: a missed hyphen sends
-      visitors to someone else's `armenianfighters.com`. `armenianfighters.net`
-      was also free.
+- [ ] Register `armenianfighters.am` (chosen and still free on 2026-10-30)
+      and add it in Vercel → Settings → Domains. It is already `url` in
+      `content/site.ts`, used for canonical links and the sitemap. Register it
+      in a coach's name so the project owns it. `.am` names are sold by
+      Armenian registrars (the registry lists them at
+      https://amnic.isoc.am/en/registrars), and registration takes up to three
+      business days. `armenianfighters.com` and `armenianfighters.org` are
+      taken. Don't use `armenian-fighters.com`: a missed hyphen sends visitors
+      to someone else's `armenianfighters.com`.
 - [ ] News photos (`public/images/news/`) are the publishers' own: IMMAF,
       Sportaran, Sportball24, and Instagram posts by Lion Heart, the MMA
       Federation of Armenia and Armenian MMA. YouTube cards show YouTube's own
