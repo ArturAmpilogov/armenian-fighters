@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/*
+ * Colours come from the Armenian flag and are used by role:
+ * blue is the ink and structure, red is for actions and the red corner,
+ * apricot is reserved for gold.
+ */
+@theme {
+  --color-paper: #ffffff;
+  --color-mat: #eef1f6;
+  --color-ink: #0a2470;
+  --color-ink-soft: #46598a;
+  --color-flag-blue: #0033a0;
+  --color-corner-red: #d90012;
+  --color-corner-red-dark: #b0000f;
+  --color-apricot: #f2a800;
+  --color-silver: #8a94a6;
+  --color-bronze: #a86a33;
+}
+
+/* Armenian letters fall through to Noto Sans Armenian in both stacks. */
+@theme inline {
+  --font-sans:
+    var(--font-sofia), var(--font-armenian), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-display:
+    var(--font-sofia-condensed), var(--font-armenian), ui-sans-serif, system-ui,
+    sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --display-scale: 1;
+  }
+
+  /* Armenian capitals are much wider than the condensed Latin and Cyrillic. */
+  :lang(hy) {
+    --display-scale: 0.78;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    /* Narrows the Armenian face to sit with the extra-condensed Latin. */
+    font-stretch: 70%;
+    line-height: 1;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus-color, var(--color-corner-red));
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 1.5rem;
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-8;
+  }
+
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  /* Fight-poster headings: the hero and the contact band. */
+  .poster-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-stretch: 62.5%;
+    line-height: 0.86;
+    text-transform: uppercase;
+    /* Sized so the longest word fits; never split a word across lines. */
+    overflow-wrap: normal;
+  }
+
+  .poster-title-xl {
+    font-size: calc(clamp(4.5rem, 19vw, 10.5rem) * var(--display-scale));
+  }
+
+  /* The coach's name across the cover: sized so "Petrosyan" fits on one line. */
+  .poster-title-name {
+    font-size: calc(clamp(4rem, 15vw, 11rem) * var(--display-scale));
+  }
+
+  .poster-title-lg {
+    font-size: calc(clamp(3.5rem, 10vw, 7.5rem) * var(--display-scale));
+  }
+
+  .section-title {
+    font-size: calc(clamp(2.75rem, 7vw, 5rem) * var(--display-scale));
+    font-weight: 900;
+  }
+
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center px-6 py-2 text-center font-display text-xl font-bold transition-colors;
+    font-stretch: 70%;
+  }
+
+  .btn-primary {
+    @apply bg-corner-red text-white hover:bg-corner-red-dark;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-ink text-ink hover:bg-ink hover:text-white;
+  }
+
+  .btn-apricot {
+    @apply bg-apricot text-ink hover:bg-white;
+  }
+
+  .text-link {
+    @apply underline decoration-2 underline-offset-4 hover:decoration-corner-red;
+  }
+
+  /* The corner of the ring: blue for companies, red for individuals. */
+  .corner {
+    position: relative;
+    padding-top: 1.75rem;
+    padding-left: 1.5rem;
+  }
+
+  .corner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-top: 5px solid var(--corner-color);
+    border-left: 5px solid var(--corner-color);
+  }
+
+  .corner-blue {
+    --corner-color: var(--color-flag-blue);
+  }
+
+  .corner-red {
+    --corner-color: var(--color-corner-red);
+  }
+
+  /* Sections on the dark blue backgrounds. */
+  .on-blue {
+    --focus-color: var(--color-apricot);
+  }
+}
