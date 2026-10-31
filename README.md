@@ -13,10 +13,10 @@ It has six pages:
   loads as you scroll.
 - **Sponsors**: everyone who supports the project, split into companies and individuals,
   newest first and grouped by month.
-- **Become a sponsor** (`/become-a-sponsor/`): the card payment form for
-  individuals, once or every month, with what the money pays for and how
-  payments work. The form stays closed until card payments are connected (see
-  "Card payments" below).
+- **Become a sponsor** (`/become-a-sponsor/`): for individuals. Until card
+  payments are connected (see "Card payments" below), it says payment by card
+  is coming soon and shows the contacts. Then it shows the card payment form
+  (once or every month), how payments work and the seller's details.
 - **Payment terms** and **Privacy policy** (`/payment-terms/`, `/privacy/`):
   what Ameriabank requires on a merchant's site, linked from the footer.
 

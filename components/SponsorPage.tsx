@@ -1,4 +1,4 @@
-import { getMessages } from "@/content/messages";
+import { getMessages, type Messages } from "@/content/messages";
 import { site } from "@/content/site";
 import { localePath, type Locale } from "@/lib/i18n";
 import { CardLogos } from "./CardLogos";
@@ -8,13 +8,33 @@ import { SellerDetails } from "./SellerDetails";
 import { SponsorForm } from "./SponsorForm";
 import { Contact } from "./sections/Contact";
 
+const panelClass = "corner corner-red min-w-0 bg-mat p-6 sm:p-10 lg:col-span-7";
+
+/** Shown until card payments open: what's coming, and the contacts for now. */
+function ComingSoon({ sponsor }: { sponsor: Messages["sponsor"] }) {
+  return (
+    <section aria-labelledby="payment-title" className={panelClass}>
+      <p className="inline-block bg-ink px-3 py-1 font-display text-lg font-bold text-white [font-stretch:70%]">
+        {sponsor.soon.label}
+      </p>
+      <h2 id="payment-title" className="mt-4 text-3xl sm:text-5xl">
+        {sponsor.soon.title}
+      </h2>
+      <p className="mt-5 text-xl leading-relaxed">{sponsor.soon.body}</p>
+      <a href="#contact" className="btn btn-primary mt-8">
+        {sponsor.soon.action}
+      </a>
+    </section>
+  );
+}
+
 // Individuals sponsor by card here. Companies talk to the coaches first, so
-// their button on the home page goes to the contacts instead.
+// their button on the home page goes to the contacts instead. Until
+// `payments.endpoint` is set, the page shows "coming soon" and the contacts.
 export function SponsorPage({ locale }: { locale: Locale }) {
   const t = getMessages(locale);
   const { sponsor, costs } = t;
   const { payments } = site;
-  const open = payments.endpoint !== null;
 
   return (
     <PageShell locale={locale} page="sponsor">
@@ -30,38 +50,30 @@ export function SponsorPage({ locale }: { locale: Locale }) {
         </p>
 
         <div className="mt-12 grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-8">
-          <section
-            aria-labelledby="payment-title"
-            className="corner corner-red min-w-0 bg-mat p-6 sm:p-10 lg:col-span-7"
-          >
-            <h2 id="payment-title" className="text-3xl sm:text-5xl">
-              {sponsor.form.title}
-            </h2>
-            {open ? null : (
-              <div className="mt-8 bg-white p-5 shadow-[6px_6px_0_var(--color-ink)] sm:p-6">
-                <h3 className="text-2xl sm:text-3xl">{sponsor.closed.title}</h3>
-                <p className="mt-3 text-lg">{sponsor.closed.body}</p>
-                <a href="#contact" className="btn btn-primary mt-5">
-                  {sponsor.closed.action}
-                </a>
+          {payments.endpoint === null ? (
+            <ComingSoon sponsor={sponsor} />
+          ) : (
+            <section aria-labelledby="payment-title" className={panelClass}>
+              <h2 id="payment-title" className="text-3xl sm:text-5xl">
+                {sponsor.form.title}
+              </h2>
+              <SponsorForm
+                locale={locale}
+                labels={sponsor.form}
+                money={sponsor.money}
+                amounts={payments.amounts}
+                min={payments.min}
+                max={payments.max}
+                endpoint={payments.endpoint}
+                termsHref={localePath(locale, "terms")}
+                privacyHref={localePath(locale, "privacy")}
+              />
+              <div className="mt-10 space-y-4 border-t-2 border-ink/15 pt-6">
+                <CardLogos cards={payments.cards} label={sponsor.form.cards} />
+                <p className="text-base text-ink-soft">{sponsor.form.secure}</p>
               </div>
-            )}
-            <SponsorForm
-              locale={locale}
-              labels={sponsor.form}
-              money={sponsor.money}
-              amounts={payments.amounts}
-              min={payments.min}
-              max={payments.max}
-              endpoint={payments.endpoint}
-              termsHref={localePath(locale, "terms")}
-              privacyHref={localePath(locale, "privacy")}
-            />
-            <div className="mt-10 space-y-4 border-t-2 border-ink/15 pt-6">
-              <CardLogos cards={payments.cards} label={sponsor.form.cards} />
-              <p className="text-base text-ink-soft">{sponsor.form.secure}</p>
-            </div>
-          </section>
+            </section>
+          )}
 
           <section
             aria-labelledby="sponsor-costs-title"
@@ -85,39 +97,43 @@ export function SponsorPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section aria-labelledby="how-title" className="bg-mat">
-        <div className="page-container section-pad grid gap-10 lg:grid-cols-12 lg:gap-8">
-          <h2 id="how-title" className="section-title lg:col-span-5">
-            {sponsor.how.title}
-          </h2>
-          <dl className="border-t-[3px] border-ink lg:col-span-7">
-            {sponsor.how.items.map((item) => (
-              <div key={item.label} className={factRow}>
-                <dt className={factLabel}>{item.label}</dt>
-                <dd className="min-w-0">{item.text}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      {payments.endpoint === null ? null : (
+        <>
+          <section aria-labelledby="how-title" className="bg-mat">
+            <div className="page-container section-pad grid gap-10 lg:grid-cols-12 lg:gap-8">
+              <h2 id="how-title" className="section-title lg:col-span-5">
+                {sponsor.how.title}
+              </h2>
+              <dl className="border-t-[3px] border-ink lg:col-span-7">
+                {sponsor.how.items.map((item) => (
+                  <div key={item.label} className={factRow}>
+                    <dt className={factLabel}>{item.label}</dt>
+                    <dd className="min-w-0">{item.text}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </section>
 
-      <div className="page-container section-pad grid gap-10 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-7">
-          <SellerDetails t={t} id="seller-title" />
-        </div>
-        <ul className="space-y-3 text-xl font-semibold lg:col-span-5 lg:pt-16">
-          <li>
-            <a href={localePath(locale, "terms")} className="text-link">
-              {t.terms.title}
-            </a>
-          </li>
-          <li>
-            <a href={localePath(locale, "privacy")} className="text-link">
-              {t.privacy.title}
-            </a>
-          </li>
-        </ul>
-      </div>
+          <div className="page-container section-pad grid gap-10 lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-7">
+              <SellerDetails t={t} id="seller-title" />
+            </div>
+            <ul className="space-y-3 text-xl font-semibold lg:col-span-5 lg:pt-16">
+              <li>
+                <a href={localePath(locale, "terms")} className="text-link">
+                  {t.terms.title}
+                </a>
+              </li>
+              <li>
+                <a href={localePath(locale, "privacy")} className="text-link">
+                  {t.privacy.title}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </>
+      )}
 
       <Contact locale={locale} t={t} />
     </PageShell>

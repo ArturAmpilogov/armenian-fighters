@@ -224,11 +224,12 @@ export const en = {
   },
   sponsor: {
     title: "Become a sponsor",
-    lead: "Support MMA in Armenia by card, once or every month.",
+    lead: "Support young Armenian fighters and MMA in Armenia.",
     money: "{amount} AMD",
-    closed: {
-      title: "Card payments aren't open yet",
-      body: "Until they open, write to the coaches and they'll tell you how to support the project.",
+    soon: {
+      label: "Coming soon",
+      title: "Payment by card",
+      body: "Soon you'll be able to support the project here by card, once or every month. For now, write to the coaches and they'll tell you how to help.",
       action: "Write to the coaches",
     },
     form: {
